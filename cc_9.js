@@ -7,7 +7,7 @@ class Employee {
         this.salary = salary
     }
 getDetails() {
-    return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}`
+    return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`
 }
 calculateAnnualSalary() {
     return this.salary * 12
@@ -25,7 +25,7 @@ class Manager extends Employee {
         this.teamSize= teamSize
     }
 getDetail() {
-    return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}, Team Size: ${this.teamSize}`
+    return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`
 }
 calculateBonus() {
     return this.salary * 12* 0.10
@@ -35,3 +35,23 @@ calculateBonus() {
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5);
 console.log(mgr1.getDetails())
 console.log(mgr1.calculateBonus())
+
+//Task 3
+class Company {
+    constructor(name) {
+        this.name= name
+        this.Employee = []
+    }
+addEmployee(Employee) {
+    this.Employee.push(Employee)
+}
+listEmployees() {
+    this.Employee.forEach(Employee => {
+        console.log(Employee.getDetails())
+    })
+}}
+//Test Case
+const company = new Company("TechCorp")
+company.addEmployee(emp1)
+company.addEmployee(mgr1)
+company.listEmployees()
