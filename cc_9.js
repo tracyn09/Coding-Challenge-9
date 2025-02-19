@@ -10,7 +10,7 @@ getDetails() {
     return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`
 }
 calculateAnnualSalary() {
-    return this.salary * 12
+        return this.salary * 12 ;
 }
 }
 //Test Case
@@ -24,11 +24,14 @@ class Manager extends Employee {
         super(name, id, department, salary)
         this.teamSize= teamSize
     }
-getDetail() {
+getDetails() {
     return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`
 }
 calculateBonus() {
-    return this.salary * 12* 0.10
+    return this.salary * 12 * 0.10
+}
+calculateAnnualSalary() {
+    return super.calculateAnnualSalary() + this.calculateBonus();
 }
 }
 //Test Case
@@ -40,18 +43,26 @@ console.log(mgr1.calculateBonus())
 class Company {
     constructor(name) {
         this.name= name
-        this.Employee = []
+        this.employees = []
     }
-addEmployee(Employee) {
-    this.Employee.push(Employee)
+addEmployee(employee) {
+    this.employees.push(employee)
 }
 listEmployees() {
-    this.Employee.forEach(Employee => {
-        console.log(Employee.getDetails())
+    this.employees.forEach(employee => {
+        console.log(employee.getDetails())
     })
-}}
-//Test Case
+}
+
+//Task 4
+ calculateTotalPayroll(){
+    return this.employees.reduce((totalPayroll, employee) => {
+        return totalPayroll + employee.calculateAnnualSalary();}, 0)
+    }}
+//Test Case for Task 3
 const company = new Company("TechCorp")
 company.addEmployee(emp1)
 company.addEmployee(mgr1)
 company.listEmployees()
+//Test Case for Task 4
+console.log(company.calculateTotalPayroll())
