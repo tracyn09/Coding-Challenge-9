@@ -58,7 +58,15 @@ listEmployees() {
  calculateTotalPayroll(){
     return this.employees.reduce((totalPayroll, employee) => {
         return totalPayroll + employee.calculateAnnualSalary();}, 0)
-    }}
+    }
+
+//Task 5
+promoteToManager(employee, teamSize) {
+    const promotedManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize)
+        this.employees = this.employees.map(emp => (emp.id === employee.id ? promotedManager : emp));
+    }
+
+}
 //Test Case for Task 3
 const company = new Company("TechCorp")
 company.addEmployee(emp1)
@@ -66,3 +74,6 @@ company.addEmployee(mgr1)
 company.listEmployees()
 //Test Case for Task 4
 console.log(company.calculateTotalPayroll())
+//Test Case for Task 5
+company.promoteToManager(emp1, 3);
+company.listEmployees()
